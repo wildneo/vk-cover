@@ -1,6 +1,6 @@
 {
   "name": "vk-cover",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "vk-cover",
   "main": "index.js",
   "scripts": {
@@ -9,5 +9,19 @@
   "author": "Roman Oskolkov",
   "license": "MIT",
   "dependencies": {
-  }
+    "restler": "^3.4.0",
+    "vksdk": "^5.3.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wildneo/vk-cover.git"
+  },
+  "keywords": [
+    "vk"
+  ],
+  "bugs": {
+    "url": "https://github.com/wildneo/vk-cover/issues"
+  },
+  "homepage": "https://github.com/wildneo/vk-cover#readme"
 }
