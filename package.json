@@ -1,12 +1,10 @@
 {
   "name": "vk-cover",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "vk-cover",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Roman Oskolkov",
+  "main": "index.js",
+  "scripts": {},
   "license": "MIT",
   "dependencies": {
     "restler": "^3.4.0",
