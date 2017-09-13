@@ -5,7 +5,7 @@ module.exports = {
 		secret: process.env.APP_SECRET
 	},
 	group: {
-		id: 117271043
+		id: process.env.GROUP_ID
 	},
 	cover: {
 		height: 1590,
