@@ -8,11 +8,10 @@ var vk = new vk({
 	'appSecret': config.app.secret
 });
 
-var counter = 1;
-
 vk.setSecureRequests(true);
-
 vk.setToken(config.token);
+
+var counter = 0;
 
 function getUploadUrl() {
 	vk.request('photos.getOwnerCoverPhotoUploadServer', {
@@ -20,14 +19,14 @@ function getUploadUrl() {
 	'crop_x2'	: config.cover.height,
 	'crop_y2'	: config.cover.width
 	});
-	console.log(config.time.current, 'Sending request...');
+	console.log('Sending request...');
 }
 
 function uploadCover(url) {
 	rs.post(url, {
 	multipart: true,
 	data: {
-		'photo': rs.file(__dirname + config.img.path + config.img.name + counter + config.img.format, null, fs.statSync(__dirname + config.img.path + config.img.name + counter + config.img.format).size, null, 'image/png')
+		'photo': rs.file(config.img.path + config.img.items[counter], null, fs.statSync(config.img.path + config.img.items[counter]).size, null, config.img.format)
 	}
 	}).on('complete', function(result) {
 		saveCover(result);
@@ -47,15 +46,15 @@ function saveCover(result) {
 function delay() {
 	console.log('Wait...');
 	setTimeout(getUploadUrl, config.time.delay);
-	if (counter == 10) counter = 0;
-	counter++;
+	if (counter == config.img.items.length - 1) counter = 0;
+	else counter++;
 	clearTimeout();
 }
 
 vk.on('done:photos.getOwnerCoverPhotoUploadServer', function(result) {
 	var err = result.error;
 	if (err) {
-		console.log(config.time.current, 'Error:', err.error_code, err.error_msg );
+		console.log('Error:', err.error_code, err.error_msg );
 	} else {
 		var upload_url = result.response.upload_url;
 		console.log('URL received');
@@ -65,9 +64,9 @@ vk.on('done:photos.getOwnerCoverPhotoUploadServer', function(result) {
 
 vk.on('done:photos.saveOwnerCoverPhoto', function(result) {
 	if (result.error) {
-		console.log(config.time.current, 'Error:', result.error.error_code, result.error.error_msg );
+		console.log('Error:', result.error.error_code, result.error.error_msg );
 	} else {
-		console.log(config.time.current, 'Done');
+		console.log('Done');
 		delay();
 	}
 });

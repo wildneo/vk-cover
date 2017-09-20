@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = {
 	token: process.env.ACCESS_TOKEN,
 	app: {
@@ -12,29 +14,14 @@ module.exports = {
 		width: 400
 	},
 	time: {
-		delay: minutesToMilliseconds(process.env.DELAY_TIME),
-		current: getCurrentTime()
+		delay: minutesToMilliseconds(process.env.DELAY_TIME)
 	},
 	img: {
-		name: 'cover_',
-		format: '.png',
-		path: '/img/'
+		items: fs.readdirSync(__dirname + '/img/'),
+		path: __dirname + '/img/',
+		format: 'image/png'
 	}
 };
-
-function getCurrentTime() {
-	var date = new Date();
-	var h = addZero(date.getHours());
-	var m = addZero(date.getMinutes());
-	var s = addZero(date.getSeconds());
-	var time = '[' + h + ':' + m + ':' + s + ']';
-	return time;
-}
-
-function addZero(i) {
-	if (i < 10) i = "0" + i;
-	return i;
-}
 
 function minutesToMilliseconds(i) {
 	i = i * 60 * 1000;
