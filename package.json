@@ -11,6 +11,9 @@
     "vksdk": "^5.3.2"
   },
   "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wildneo/vk-cover.git"
