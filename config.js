@@ -1,29 +1,11 @@
-var fs = require('fs');
-
 module.exports = {
+	secure: true,
 	token: process.env.ACCESS_TOKEN,
-	app: {
-		id: process.env.APP_ID,
-		secret: process.env.APP_SECRET
-	},
-	group: {
-		id: process.env.GROUP_ID
-	},
-	cover: {
-		height: 1590,
-		width: 400
-	},
-	time: {
-		delay: minutesToMilliseconds(process.env.DELAY_TIME)
-	},
-	img: {
-		items: fs.readdirSync(__dirname + '/img/'),
-		path: __dirname + '/img/',
-		format: 'image/png'
-	}
+	appId: process.env.APP_ID,
+	secret: process.env.APP_SECRET,
+	group_id: process.env.GROUP_ID,
+	crop_x2: process.env.CROP_X,
+	crop_y2: process.env.CROP_Y,
+	timeout: process.env.DELAY_TIME,
+	imgsDir: process.env.IMG_DIR,
 };
-
-function minutesToMilliseconds(i) {
-	i = i * 60 * 1000;
-	return i;
-}
